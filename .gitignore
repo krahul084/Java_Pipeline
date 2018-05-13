@@ -1,3 +1,5 @@
 bin/
 reports/
+build/
+dist/
 
