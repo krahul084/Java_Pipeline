@@ -45,7 +45,7 @@ pipeline {
 	      }
 	    }
 
-	    stage("Running on CentOS") {
+	    stage("Testing the Built Jar") {
 	      agent {
 	        label 'centos'
 	      }
@@ -54,17 +54,6 @@ pipeline {
 	        sh "java -jar rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar 5 6"
 		  }
 
-		}
-
-
-		stage("Running on Debian") {
-		  agent {
-		  	docker 'openjdk:8u171-jre'
-		  }
-		  steps {
-		    sh "wget http://krahulchowdary6.mylabserver.com/rectangles/all/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
-	        sh "java -jar rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar 5 6"
-		  }
 		}
 
 		stage('Promote to Green') {
