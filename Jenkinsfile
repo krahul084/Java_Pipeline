@@ -39,7 +39,7 @@ pipeline {
 	        label 'apache'
 	      }
 	      steps {
-	        sh "if ![ -d '/var/www/html/rectangles/all' ] then mkdir -p /var/www/html/rectangles/all/green; fi"
+	        sh "if ![ -d '/var/www/html/rectangles/all' ]; then mkdir -p /var/www/html/rectangles/all/green; fi"
 
 	        sh "cp -rp dist/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/"
 	      }
