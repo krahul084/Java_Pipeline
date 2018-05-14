@@ -64,5 +64,16 @@ pipeline {
 		    sh "cp /var/www/html/rectangles/all/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/green/"
 		  }
 		}
+                post {
+	           success {
+	               emailext(
+	                   subject: "${env.JOB_NAME} [${env.BUILD_NUMBER}] Code Promoted to Green",
+	                   body: """<p>'${env.JOB_NAME} [${env.BUILD_NUMBER}]' Development Promoted to Green":</p>
+	                   <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME}
+	                   [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+	                   to: "krahulchowdary@gmail.com"
+	               )
+	            }
+}         
     }
 }
